@@ -1,0 +1,69 @@
+1. REGISTER:
+	new user can register themselves using below API
+	method: POST
+	endpoint: /v1/register
+	body: 
+		{
+			"username": "<username>",
+			"password_d": "<password>",
+			"email_id": "<emailid>"
+		}
+    response:
+        text/plain; charset=utf-8
+        success/error message
+
+	existing users cannot register again
+	all 3 fields are mandatory
+
+	
+2. LOGIN:
+	new users need to register before loggin in
+	username and password should be correct
+	method: POST
+	endpoint: /v1/login
+	body: 
+		{
+			"username": "<username>",
+			"password_d": "<password>"
+		}
+    response:
+        [
+            {
+                "sitename": "<sitename>",
+                "password_e": "<password_e>",
+                "lastupdatedts": ""
+            }
+        ]
+
+3. ADD PASSWORD:
+    logged in users can add new passwords
+    password encrypted with 'master_password' to be sent
+    all fields are required
+    cannot add password for site that is already added once
+    method: POST
+	endpoint: /v1/addpass
+	body: 
+		{
+			"username": "<username>",
+			"sitename": "<sitename>",
+            "password_e": "<password_e>"
+		}
+    response:
+        text/plain; charset=utf-8
+        success/error message
+
+4. DELETE PASSWORD:
+    logged in users can delete previously added passwords
+    all fields are required
+    cannot delete password for site that does not exist
+    method: POST
+	endpoint: /v1/delpass
+	body: 
+		{
+			"username": "<username>",
+			"sitename": "<sitename>",
+            		"password_e": "<password_e>"
+		}
+    response:
+        text/plain; charset=utf-8
+        success/error message
